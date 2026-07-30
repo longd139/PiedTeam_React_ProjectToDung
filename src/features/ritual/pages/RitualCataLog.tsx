@@ -16,35 +16,61 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui/select";
-import { Button } from "@/shared/components/ui/button";
+
 import useDebounce from "@/shared/hooks/useDebounce";
+import { useSearchParams } from "react-router-dom";
 
 const RitualCatalog: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-  const [searchInput, setSearchInput] = useState("");
+  const [search, setSearch] = useState(searchParams.get("search") || "");
   const [hot, setHot] = useState<boolean | undefined>(undefined);
   const debounceSearch = useDebounce(search, 500);
   const { rituals, isLoading, pagination, isError, refetch, error } =
-    useRitualCatalog({ page: page, search: debounceSearch, isHot: hot });
+    useRitualCatalog({
+      page: Number(searchParams.get("page") || 1),
+      search: searchParams.get("search") || undefined,
+      isHot: Boolean(searchParams.get("isHot")),
+      limit: Number(searchParams.get("limit") || 10),
+    });
 
-  // if (isLoading) return <LoadingState />;
   if (isError) return <ErrorState message={error?.message} onRetry={refetch} />;
-  // if (rituals.length === 0) return <EmptyState />;
 
-  const handleisHot = (item: string | undefined) => {
-    if (item === "true") setHot(true);
-    else if (item === "false") setHot(false);
-    else setHot(undefined);
-  };
   const handlePageChange = (page: number) => {
-    setPage(page);
+    const params = new URLSearchParams(searchParams);
+    params.set("page", String(page));
+    // set (key, value)
+    setSearchParams(params);
   };
   const items = [
+    { label: "Tất cả", value: "all" },
     { label: "true", value: "true" },
     { label: "false", value: "false" },
-    { label: "--", value: "undefined" },
   ];
+  const handleFilterChange = (key: string, value: string | undefined) => {
+    const params = new URLSearchParams(searchParams);
+    if (value) {
+      console.log(value);
+
+      params.set(key, value);
+    } else {
+      params.delete(key);
+    }
+    params.set("page", "1"); // vì phân trang là bước cuối cùng
+    setSearchParams(params);
+  };
+  useEffect(() => {
+    if (debounceSearch !== searchParams.get(search)) {
+      const params = new URLSearchParams(searchParams);
+      if (debounceSearch) {
+        params.set("search", debounceSearch);
+      } else {
+        params.delete("search");
+      }
+      params.set("page", "1");
+      setSearchParams(params);
+    }
+  }, [debounceSearch]);
   return (
     <>
       <RitualsTitleList title="Danh sách lễ">
@@ -59,7 +85,12 @@ const RitualCatalog: React.FC = () => {
             </Button> */}
           </div>
 
-          <Select onValueChange={(value) => handleisHot(value)}>
+          <Select
+            value={searchParams.get("isHot") || "all"}
+            onValueChange={(value) =>
+              handleFilterChange("isHot", value === "all" ? undefined : value)
+            }
+          >
             <SelectTrigger className="w-full max-w-48">
               <SelectValue placeholder="isHot" />
             </SelectTrigger>
@@ -67,7 +98,7 @@ const RitualCatalog: React.FC = () => {
               <SelectGroup>
                 <SelectLabel>is Hot</SelectLabel>
                 {items.map((item) => (
-                  <SelectItem key={item.label} value={item.value + ""}>
+                  <SelectItem key={item.value} value={item.value}>
                     {item.label}
                   </SelectItem>
                 ))}

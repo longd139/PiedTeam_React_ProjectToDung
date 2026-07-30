@@ -10,7 +10,6 @@ export const useRitualCatalog = (params?: RitualFilterParams) => {
     return {
         rituals: query.data?.data || [],
         pagination: query.data?.meta, // thông tin phân trang
-
         isLoading: query.isLoading,
         isError: query.isError,
         refetch: query.refetch,
