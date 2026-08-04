@@ -1,6 +1,5 @@
 import { Button } from "@/shared/components/ui/button";
 import { Spinner } from "@/shared/components/ui/spinner";
-import { Loader2Icon } from "lucide-react";
 
 interface SubmitBtnType {
   isSubmitting?: boolean;

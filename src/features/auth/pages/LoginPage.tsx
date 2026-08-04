@@ -9,7 +9,7 @@ import AuthCard from "../components/AuthCard";
 
 const LoginPage = () => {
   const loginMutation = useLoginMutation();
-  console.log("render ... loginpage");
+  ("render ... loginpage");
   const {
     register,
     handleSubmit,

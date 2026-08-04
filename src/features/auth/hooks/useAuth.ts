@@ -44,18 +44,18 @@ export const useLoginMutation = () => {
       authApi.login(userData),
 
     onSuccess: (response) => {
-      console.log(response);
+      response;
 
       const decoded = jwtDecode<JwtPayload>(response.accessToken);
       setTokens({ accessToken: response.accessToken, role: decoded.role });
-      console.log(decoded.role);
+      decoded.role;
 
       toast.success("Login successfull !", {
         description: "Wellcome !",
       });
 
       if (decoded.role === "admin") {
-        // console.log(decoded.role);
+        // (decoded.role);
 
         navigate("/admin/rituals", { replace: true });
       } else {

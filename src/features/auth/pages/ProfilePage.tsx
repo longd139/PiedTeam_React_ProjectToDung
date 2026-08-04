@@ -8,7 +8,7 @@ export default function ProfilePage() {
   const {
     data: user,
     isLoading, // true = lần đầu fetch, chưa có data
-    isError, // true = fetch bị lỗi
+    // isError, // true = fetch bị lỗi
     error, // là biến/ object chứa cái lỗi đó
     refetch, // gọi lại query function để fetch lại manually
     isFetching, // True = đang fetch (dù có data hay ko) khi có

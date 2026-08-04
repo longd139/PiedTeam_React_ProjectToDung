@@ -43,7 +43,7 @@ export const authApi = {
     const data = (await apiClient.get("/user/me")) as any;
     // backend trả: {message, result:{access_token, refresh_token}}
     // fe nhận : {accessToken,refreshToken}
-    // console.log({data.id})
+    // ({data.id})
     return {
       _id: data.id,
       email: data.email,
@@ -54,7 +54,7 @@ export const authApi = {
     accessToken: string;
   }): Promise<{ message: string }> {
     const data = await apiClient.post("/auth/logout", credentials);
-    // console.log(data);
+    // (data);
 
     return {
       message: data.data.message,

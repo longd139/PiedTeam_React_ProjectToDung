@@ -22,9 +22,8 @@ import { useSearchParams } from "react-router-dom";
 
 const RitualCatalog: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(1);
   const [search, setSearch] = useState(searchParams.get("search") || "");
-  const [hot, setHot] = useState<boolean | undefined>(undefined);
+  // const [hot, setHot] = useState<boolean | undefined>(undefined);
   const debounceSearch = useDebounce(search, 500);
   const { rituals, isLoading, pagination, isError, refetch, error } =
     useRitualCatalog({
@@ -50,7 +49,7 @@ const RitualCatalog: React.FC = () => {
   const handleFilterChange = (key: string, value: string | undefined) => {
     const params = new URLSearchParams(searchParams);
     if (value) {
-      console.log(value);
+      value;
 
       params.set(key, value);
     } else {

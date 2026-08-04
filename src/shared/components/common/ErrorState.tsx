@@ -1,6 +1,6 @@
 export const ErrorState = ({
   message,
-  onRetry,
+  // onRetry,
 }: {
   message: string | undefined;
   onRetry: () => void;
