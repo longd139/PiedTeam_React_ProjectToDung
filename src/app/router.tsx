@@ -1,4 +1,3 @@
-/* eslint-disable */
 import LoginPage from "@/features/auth/pages/LoginPage";
 import ProfilePage from "@/features/auth/pages/ProfilePage";
 import RegisterPage from "@/features/auth/pages/RegisterPage";
