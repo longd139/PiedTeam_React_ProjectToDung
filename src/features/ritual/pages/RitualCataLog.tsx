@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useRitualCatalog } from "../hooks/useRitualCatalog";
 import { ErrorState } from "@/shared/components/common/ErrorState";
 import { EmptyState } from "@/shared/components/common/EmptyState";
