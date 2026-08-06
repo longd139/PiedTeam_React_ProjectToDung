@@ -7,7 +7,7 @@ on:
 
 jobs:
   frontend-ci:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
