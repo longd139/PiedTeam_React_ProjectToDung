@@ -11,7 +11,7 @@ jobs:
     env:
       DISCORD_WEBHOOK_URL: ${{secrets.DISCORD_WEBHOOK_URL}}
       REPO: ${{github.repository}}
-      BRANCH: ${{github.event.workflow_run.head.branch}}
+      BRANCH: ${{github.event.workflow_run.head_branch}}
       ACTOR: ${{github.event.workflow_run.actor.login}}
       LOG_URL: ${{github.event.workflow_run.html_url}}
 
