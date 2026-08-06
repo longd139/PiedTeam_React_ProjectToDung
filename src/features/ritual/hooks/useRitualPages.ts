@@ -1,7 +1,3 @@
-import { useParams } from "react-router-dom";
-
-const useRitualPages = () => {
-    const {} = useParams();
-};
+const useRitualPages = () => {};
 
 export default useRitualPages;

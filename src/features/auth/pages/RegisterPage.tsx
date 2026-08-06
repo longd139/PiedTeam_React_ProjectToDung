@@ -13,7 +13,7 @@ export default function RegisterPage() {
   // const setTokens = useAuthStore((state) => state.setTokens); // zustand
   // const navigate = useNavigate();
   const registerMutaion = useRegisterMutation();
-  ("heheheh");
+
   const {
     register, //function để đăng ký những cái input với RHF
     handleSubmit, // dùng để submit

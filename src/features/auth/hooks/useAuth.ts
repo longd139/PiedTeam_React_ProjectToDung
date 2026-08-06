@@ -44,11 +44,8 @@ export const useLoginMutation = () => {
       authApi.login(userData),
 
     onSuccess: (response) => {
-      response;
-
       const decoded = jwtDecode<JwtPayload>(response.accessToken);
       setTokens({ accessToken: response.accessToken, role: decoded.role });
-      decoded.role;
 
       toast.success("Login successfull !", {
         description: "Wellcome !",

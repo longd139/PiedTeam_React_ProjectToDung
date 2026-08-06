@@ -21,8 +21,8 @@ export default defineConfig([
 
     rules: {
       "no-unused-vars": "warn",
-      "any-unused-vars": "warn",
-
+      // "any-unused-vars": "warn",
+      "@typescript-eslint/no-explicit-any": "off",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
     },
